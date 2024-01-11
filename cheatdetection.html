@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess Cheat Detection System - Lichess Insight Hub</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Lichess Cheat Detection System</h1>
+        <p>Guarding the Fairness of Online Chess</p>
+    </header>
+
+    <section>
+        <h2>How Lichess Detects Cheating</h2>
+        <p>
+            Lichess employs a sophisticated cheat detection system to maintain fair play. While specific details are proprietary, the system utilizes a combination of statistical analysis, pattern recognition, and behavioral algorithms to identify potential cheating.
+        </p>
+        <p>
+            The platform is committed to providing a level playing field for all users, and the cheat detection system plays a crucial role in achieving this goal.
+        </p>
+    </section>
+
+    <section>
+        <h2>Purpose of Lichess Cheat Detection System</h2>
+        <p>
+            The primary purpose of the Cheat Detection System is to ensure the integrity of games on Lichess. By detecting and addressing potential cheating behaviors, the system contributes to maintaining a fair and enjoyable online chess environment for millions of users.
+        </p>
+        <p>
+            Lichess takes cheating seriously, and the implementation of the cheat detection system reflects this commitment.
+        </p>
+    </section>
+
+    <section>
+        <h2>How Cheaters Are Detected</h2>
+        <p>
+            Cheaters on Lichess are detected through a combination of statistical anomalies, behavioral patterns, and other undisclosed methods. The system continuously evolves to stay ahead of new cheating techniques, providing a robust defense against unfair play.
+        </p>
+        <p>
+            When suspicious behavior is identified, the system may automatically mark the user's account with a red flag, and in severe cases, moderators may take additional actions, including account closure.
+        </p>
+    </section>
+
+    <section>
+        <h2>Number of Bans at One Time</h2>
+        <p>
+            The cheat detection system on Lichess can efficiently handle multiple cases simultaneously. The platform has the capacity to ban accounts in real-time, ensuring a swift response to maintain the integrity of the gaming experience.
+        </p>
+        <p>
+            The exact number of bans at one time may vary based on the prevalence of cheating and the effectiveness of the detection algorithms.
+        </p>
+    </section>
+
+    <section>
+        <h2>Role of "Irwin" in Cheat Detection</h2>
+        <p>
+            While there is no specific information about an entity named "Irwin" in Lichess cheat detection, it's important to note that cheat detection involves a combination of automated systems and human moderation. Lichess moderators play a crucial role in reviewing flagged accounts and taking appropriate actions.
+        </p>
+    </section>
+
+    <section>
+        <h2>Modern Working Graphs</h2>
+        <div class="graph-container">
+            <!-- Graph 1: How Irwin Cheat Detection System Works -->
+            <canvas id="irwinDetectionGraph"></canvas>
+        </div>
+        <div class="graph-container">
+            <!-- Graph 2: Number of Cheaters Banned at One Time -->
+            <canvas id="bansAtOneTimeGraph"></canvas>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // JavaScript code for the modern working graphs using Chart.js and D3.js
+        document.addEventListener('DOMContentLoaded', function () {
+            // Graph 1: How Irwin Cheat Detection System Works
+            var ctxIrwin = document.getElementById('irwinDetectionGraph').getContext('2d');
+            var myChartIrwin = new Chart(ctxIrwin, {
+                type: 'bar',
+                data: {
+                    labels: ['Method A', 'Method B', 'Method C', 'Method D'],
+                    datasets: [{
+                        label: 'Irwin Detection',
+                        data: [80, 90, 75, 85], // Replace with actual data
+                        backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Graph 2: Number of Cheaters Banned at One Time
+            var ctxBans = document.getElementById('bansAtOneTimeGraph').getContext('2d');
+            var myChartBans = new Chart(ctxBans, {
+                type: 'bar',
+                data: {
+                    labels: ['2022', '2023', '2024'],
+                    datasets: [{
+                        label: 'Number of Bans',
+                        data: [500, 700, 600], // Replace with actual data
+                        backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

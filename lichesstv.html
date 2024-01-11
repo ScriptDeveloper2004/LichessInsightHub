@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess TV - Lichess Insight Hub</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Lichess TV</h1>
+        <p>Experience Live Chess Broadcasts</p>
+    </header>
+
+    <section>
+        <h2>How Lichess TV Works</h2>
+        <p>
+            Lichess TV provides users with a live chess broadcasting experience. It showcases ongoing games, tournaments, and noteworthy matches, allowing chess enthusiasts to watch and learn from top players in real-time.
+        </p>
+        <p>
+            The platform is designed to enhance the viewing experience, offering insightful commentary, analysis, and a dynamic interface for users to follow their favorite games.
+        </p>
+    </section>
+
+    <section>
+        <h2>Purpose of Lichess TV</h2>
+        <p>
+            Lichess TV serves the purpose of bringing the global chess community together by providing a central hub for live chess broadcasts. It aims to promote learning, entertainment, and a sense of community among chess players of all skill levels.
+        </p>
+        <p>
+            By featuring top-level games and engaging commentary, Lichess TV contributes to the platform's commitment to fostering a vibrant and inclusive online chess environment.
+        </p>
+    </section>
+
+    <section>
+        <h2>Why Lichess Uses Lichess TV</h2>
+        <p>
+            Lichess integrates Lichess TV to offer users a captivating and interactive way to follow chess events. The live broadcasting feature adds excitement to the platform, allowing users to immerse themselves in the chess world's latest developments.
+        </p>
+        <p>
+            By incorporating Lichess TV, the platform continues to innovate and provide a comprehensive chess experience that goes beyond playing games.
+        </p>
+    </section>
+
+    <section>
+        <h2>Modern Working Graph</h2>
+        <div class="graph-container">
+            <!-- Include your strong bar graph using Chart.js or D3.js here -->
+            <canvas id="lichessTvGraph"></canvas>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // JavaScript code for the strong bar graph goes here
+        // You can use Chart.js or D3.js for this purpose
+        document.addEventListener('DOMContentLoaded', function () {
+            // Example Chart.js bar graph
+            var ctx = document.getElementById('lichessTvGraph').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Event 1', 'Event 2', 'Event 3', 'Event 4', 'Event 5'],
+                    datasets: [{
+                        label: 'Viewership',
+                        data: [2000, 3000, 2500, 3500, 4000],
+                        backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

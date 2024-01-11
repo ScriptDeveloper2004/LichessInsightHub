@@ -63,12 +63,6 @@
             max-width: 100%;
         }
 
-        img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-
         footer {
             text-align: center;
             padding: 10px;
@@ -139,8 +133,8 @@
     <section>
         <h2>Real Rating Graph</h2>
         <div class="graph-container">
-            <!-- Include image from Imgur -->
-            <img src="https://your-imgur-link-here" alt="Real Rating Graph">
+            <!-- Chart Button for Working Graph -->
+            <button onclick="generateWorkingGraph()">Generate Working Graph</button>
         </div>
     </section>
 
@@ -165,26 +159,8 @@
                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
                     datasets: [{
                         label: 'Rapid',
-                        data: [1500, 1550, 1520, 1600, 1580], // Replace with actual data
+                        data: [1500, 1550, 1520, 1600, 1580, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000], // Increased data flow till 2000
                         borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 2,
-                        fill: false
-                    }, {
-                        label: 'Blitz',
-                        data: [1600, 1620, 1610, 1580, 1650], // Replace with actual data
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 2,
-                        fill: false
-                    }, {
-                        label: 'Bullet',
-                        data: [1400, 1450, 1430, 1420, 1440], // Replace with actual data
-                        borderColor: 'rgba(255, 255, 0, 1)',
-                        borderWidth: 2,
-                        fill: false
-                    }, {
-                        label: 'Classical',
-                        data: [1700, 1680, 1720, 1750, 1740], // Replace with actual data
-                        borderColor: 'rgba(255, 150, 0, 1)',
                         borderWidth: 2,
                         fill: false
                     }]
@@ -196,7 +172,8 @@
                             position: 'bottom'
                         },
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            max: 2000 // Increased maximum rating
                         }
                     }
                 }
@@ -258,22 +235,12 @@
                 .on('mouseout', function (event, d) {
                     d3.select(this).attr('fill', color('rapid'));
                 });
-
-            // Include Glicko rating chart and Imgur image option here
-            // Glicko rating chart and Imgur image placeholders are added
-            // You can replace them with actual content as needed
-
-            // Placeholder for Glicko rating chart
-            var glickoRatingChartPlaceholder = document.createElement('p');
-            glickoRatingChartPlaceholder.textContent = 'Placeholder for Glicko rating chart';
-            document.querySelector('.graph-container').appendChild(glickoRatingChartPlaceholder);
-
-            // Placeholder for Imgur image
-            var imgurImagePlaceholder = document.createElement('img');
-            imgurImagePlaceholder.src = 'https://your-imgur-link-here';
-            imgurImagePlaceholder.alt = 'Real Rating Graph';
-            document.querySelector('.graph-container').appendChild(imgurImagePlaceholder);
         });
+
+        // Function to generate the working graph
+        function generateWorkingGraph() {
+            alert('Generate the working graph here'); // Replace with your actual graph generation code
+        }
     </script>
 </body>
 </html>

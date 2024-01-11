@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess Developer - Lichess Insight Hub</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Lichess Developer</h1>
+        <p>Empowering the Chess Community through Development</p>
+    </header>
+
+    <section>
+        <h2>How Lichess Developer Works</h2>
+        <p>
+            Lichess Developers play a crucial role in enhancing the platform's features and functionality. They contribute by developing new tools, applications, and integrations that enrich the overall chess experience on Lichess.
+        </p>
+        <p>
+            Through collaboration and innovation, Lichess Developers continuously work to bring fresh ideas and improvements to the platform, fostering a dynamic and evolving chess ecosystem.
+        </p>
+    </section>
+
+    <section>
+        <h2>How Many Lichess Developers Are There</h2>
+        <p>
+            The Lichess Developer community has grown steadily since its inception in 2010. As of 2023, there are [Insert Number] dedicated developers actively contributing to the platform.
+        </p>
+        <p>
+            The increasing number of Lichess Developers reflects the vibrant interest and commitment of the community to make Lichess a leading online chess destination.
+        </p>
+    </section>
+
+    <section>
+        <h2>What Lichess Developers Do</h2>
+        <p>
+            Lichess Developers are involved in a variety of tasks, including creating new features, improving existing functionalities, and ensuring a smooth and enjoyable user experience. They work on projects that range from chess analysis tools to integrations with other platforms.
+        </p>
+        <p>
+            Additionally, Lichess Developers actively engage with the community, gather feedback, and contribute to open-source initiatives, making Lichess a collaborative and innovative chess platform.
+        </p>
+    </section>
+
+    <section>
+        <h2>Modern Working Graphs</h2>
+        <div class="graph-container">
+            <!-- Graph 1: How Lichess Developer Works -->
+            <canvas id="lichessDevWorkGraph"></canvas>
+        </div>
+        <div class="graph-container">
+            <!-- Graph 2: Number of Lichess Developers Over the Years -->
+            <canvas id="lichessDevNumberGraph"></canvas>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // JavaScript code for the graphs using Chart.js and D3.js
+        document.addEventListener('DOMContentLoaded', function () {
+            // Graph 1: How Lichess Developer Works
+            var ctxDevWork = document.getElementById('lichessDevWorkGraph').getContext('2d');
+            var myChartDevWork = new Chart(ctxDevWork, {
+                type: 'bar',
+                data: {
+                    labels: ['Collaboration', 'Innovation', 'Tool Development', 'Community Engagement'],
+                    datasets: [{
+                        label: 'Working Areas',
+                        data: [90, 85, 80, 95], // Example data, replace with actual values
+                        backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Graph 2: Number of Lichess Developers Over the Years
+            var ctxDevNumber = document.getElementById('lichessDevNumberGraph').getContext('2d');
+            var myChartDevNumber = new Chart(ctxDevNumber, {
+                type: 'bar',
+                data: {
+                    labels: ['2010', '2012', '2014', '2016', '2018', '2020', '2022', '2023'],
+                    datasets: [{
+                        label: 'Number of Developers',
+                        data: [5, 15, 30, 50, 80, 120, 150, 180], // Example data, replace with actual values
+                        backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

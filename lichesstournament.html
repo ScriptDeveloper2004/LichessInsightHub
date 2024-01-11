@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess Tournament - Lichess Insight Hub</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Lichess Tournament</h1>
+        <p>Join, Compete, and Win in Chess Tournaments</p>
+    </header>
+
+    <section>
+        <h2>How Lichess Tournament Works</h2>
+        <p>
+            Lichess Tournaments provide a platform for players to compete in organized chess events. Players can join scheduled tournaments and participate in rounds to earn points.
+        </p>
+        <p>
+            The system ensures fair play and an exciting experience for participants by grouping players based on their ratings and pairing them against opponents of similar skill levels.
+        </p>
+    </section>
+
+    <section>
+        <h2>Purpose of Lichess Tournament</h2>
+        <p>
+            The primary purpose of Lichess Tournaments is to bring the chess community together in a competitive setting. It fosters a sense of camaraderie, allowing players to challenge themselves, improve their skills, and enjoy the thrill of tournament play.
+        </p>
+        <p>
+            Tournaments contribute to the overall dynamic and engaging atmosphere of Lichess, aligning with the platform's commitment to providing a comprehensive chess experience.
+        </p>
+    </section>
+
+    <section>
+        <h2>How Tournament Winner is Decided</h2>
+        <p>
+            The tournament winner is determined based on the accumulated points earned throughout the event. Points are awarded for each win, and tiebreakers may come into play in case of equal scores.
+        </p>
+        <p>
+            Lichess employs a robust scoring system that considers factors such as performance, number of victories, and opponents' ratings to fairly determine the tournament champion.
+        </p>
+    </section>
+
+    <section>
+        <h2>Player Capacity and Participation</h2>
+        <p>
+            Lichess Tournaments can accommodate a varying number of participants based on the tournament's format. Some tournaments may have a limited number of slots, while others may be open to a larger player pool.
+        </p>
+        <p>
+            Players are encouraged to register early for tournaments to secure their spot and ensure a smooth and timely start to the event.
+        </p>
+    </section>
+
+    <section>
+        <h2>Automatic Cheater Removal</h2>
+        <p>
+            Lichess employs advanced anti-cheating measures during tournaments. The platform uses a combination of algorithms and player reports to detect and automatically remove cheaters from the tournament.
+        </p>
+        <p>
+            This ensures a fair and enjoyable experience for all participants, maintaining the integrity of the competition.
+        </p>
+    </section>
+
+    <section>
+        <h2>Modern Working Bar Graph</h2>
+        <div class="graph-container">
+            <!-- Include your strong bar graph using Chart.js or D3.js here -->
+            <canvas id="lichessTournamentGraph"></canvas>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // JavaScript code for the strong bar graph goes here
+        // You can use Chart.js or D3.js for this purpose
+        document.addEventListener('DOMContentLoaded', function () {
+            // Example Chart.js bar graph
+            var ctx = document.getElementById('lichessTournamentGraph').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Event 1', 'Event 2', 'Event 3', 'Event 4', 'Event 5'],
+                    datasets: [{
+                        label: 'Participants',
+                        data: [100, 150, 120, 180, 200], // Replace with actual data
+                        backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

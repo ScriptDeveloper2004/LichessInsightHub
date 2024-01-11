@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess Moderator - Lichess Insight Hub</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Lichess Moderator</h1>
+        <p>Empowering the Lichess Community</p>
+    </header>
+
+    <section>
+        <h2>How Lichess Moderator Works</h2>
+        <p>
+            Lichess Moderators play a crucial role in maintaining a positive and respectful environment within the Lichess community. They actively monitor chat rooms, tournaments, and game interactions to ensure fair play and adherence to community guidelines.
+        </p>
+        <p>
+            Moderators have the authority to handle reported issues, address inappropriate behavior, and take necessary actions, such as muting or banning users, to uphold the platform's standards.
+        </p>
+    </section>
+
+    <section>
+        <h2>What Lichess Moderators Do</h2>
+        <p>
+            Lichess Moderators perform various tasks, including handling reports from users, assisting in tournament management, and ensuring that chess games proceed smoothly. They contribute to fostering a welcoming and inclusive online chess community.
+        </p>
+        <p>
+            Moderators work collaboratively to address user concerns, answer queries, and maintain a positive atmosphere for players of all skill levels.
+        </p>
+    </section>
+
+    <section>
+        <h2>How to Become a Lichess Moderator</h2>
+        <p>
+            Becoming a Lichess Moderator involves a thorough selection process by the Lichess team. Typically, candidates who have demonstrated a strong commitment to the community, excellent behavior, and a deep understanding of Lichess rules and guidelines are considered for the role.
+        </p>
+        <p>
+            If you aspire to become a Moderator, actively contribute positively to the community, follow the rules, and participate in the platform's events and discussions.
+        </p>
+    </section>
+
+    <section>
+        <h2>Lichess Moderator Badge</h2>
+        <p>
+            The Lichess Moderator badge indicates that a user has been recognized and entrusted with the responsibility of moderating the platform. Users with this badge are committed to maintaining a respectful and fair environment for all players.
+        </p>
+        <p>
+            The badge serves as a symbol of trust and authority within the Lichess community.
+        </p>
+    </section>
+
+    <section>
+        <h2>Moderator Statistics (2010-2023)</h2>
+        <div class="graph-container">
+            <!-- Include your bar graph using Chart.js for Moderator Statistics -->
+            <canvas id="moderatorStatisticsGraph"></canvas>
+        </div>
+    </section>
+
+    <section>
+        <h2>Modern Working Graph</h2>
+        <div class="graph-container">
+            <!-- Include your second bar graph using D3.js for Modern Working Graph -->
+            <svg id="modernWorkingGraphD3"></svg>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // JavaScript code for the bar graph (Moderator Statistics) using Chart.js
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctxModeratorStats = document.getElementById('moderatorStatisticsGraph').getContext('2d');
+            var myChartModeratorStats = new Chart(ctxModeratorStats, {
+                type: 'bar',
+                data: {
+                    labels: ['2010', '2012', '2014', '2016', '2018', '2020', '2022'],
+                    datasets: [{
+                        label: 'Moderators',
+                        data: [5, 10, 20, 30, 40, 50, 60], // Replace with actual data
+                        backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        // JavaScript code for the bar graph (Modern Working Graph) using D3.js
+        document.addEventListener('DOMContentLoaded', function () {
+            var dataModernWorkingGraph = [
+                { year: '2010', tasksCompleted: 50 },
+                { year: '2012', tasksCompleted: 100 },
+                { year: '2014', tasksCompleted: 150 },
+                { year: '2016', tasksCompleted: 200 },
+                { year: '2018', tasksCompleted: 250 },
+                { year: '2020', tasksCompleted: 300 },
+                { year: '2022', tasksCompleted: 350 }
+            ];
+
+            var marginModernWorkingGraph = { top: 10, right: 30, bottom: 30, left: 60 };
+            var widthModernWorkingGraph = 600 - marginModernWorkingGraph.left - marginModernWorkingGraph.right;
+            var heightModernWorkingGraph = 400 - marginModernWorkingGraph.top - marginModernWorkingGraph.bottom;
+
+            var svgModernWorkingGraph = d3.select('#modernWorkingGraphD3')
+                .attr('width', widthModernWorkingGraph + marginModernWorkingGraph.left + marginModernWorkingGraph.right)
+                .attr('height', heightModernWorkingGraph + marginModernWorkingGraph.top + marginModernWorkingGraph.bottom)
+                .append('g')
+                .attr('transform', 'translate(' + marginModernWorkingGraph.left + ',' + marginModernWorkingGraph.top + ')');
+
+            var xModernWorkingGraph = d3.scaleBand()
+                .domain(dataModernWorkingGraph.map(d => d.year))
+                .range([0, widthModernWorkingGraph])
+                .padding(0.1);
+
+            var yModernWorkingGraph = d3.scaleLinear()
+                .domain([0, d3.max(dataModernWorkingGraph, d => d.tasksCompleted)])
+                .range([heightModernWorkingGraph, 0]);
+
+            var colorModernWorkingGraph = d3.scaleOrdinal()
+                .domain(['tasksCompleted'])
+                .range(['rgba(255, 99, 132, 0.7)']);
+
+            var xAxisModernWorkingGraph = d3.axisBottom(xModernWorkingGraph);
+            var yAxisModernWorkingGraph = d3.axisLeft(yModernWorkingGraph);
+
+            svgModernWorkingGraph.append('g')
+                .attr('transform', 'translate(0,' + heightModernWorkingGraph + ')')
+                .call(xAxisModernWorkingGraph);
+
+            svgModernWorkingGraph.append('g')
+                .call(yAxisModernWorkingGraph);
+
+            svgModernWorkingGraph.selectAll()
+                .data(dataModernWorkingGraph)
+                .enter().append('rect')
+                .attr('x', d => xModernWorkingGraph(d.year))
+                .attr('y', d => yModernWorkingGraph(d.tasksCompleted))
+                .attr('width', xModernWorkingGraph.bandwidth())
+                .attr('height', d => heightModernWorkingGraph - yModernWorkingGraph(d.tasksCompleted))
+                .attr('fill', colorModernWorkingGraph('tasksCompleted'))
+                .on('mouseover', function (event, d) {
+                    d3.select(this).attr('fill', d3.rgb(colorModernWorkingGraph('tasksCompleted')).darker());
+                })
+                .on('mouseout', function (event, d) {
+                    d3.select(this).attr('fill', colorModernWorkingGraph('tasksCompleted'));
+                });
+        });
+    </script>
+</body>
+
+</html>

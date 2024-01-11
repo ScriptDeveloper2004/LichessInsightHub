@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berserk System Insight - Lichess Insight Hub</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Berserk System Insight</h1>
+        <p>Unlock the Secrets of Lichess</p>
+    </header>
+
+    <section>
+        <h2>How the Berserk System Works</h2>
+        <p>
+            The Berserk system on Lichess allows players to take risks and gain rewards. When a player chooses to Berserk, they commit to completing the game in half the usual time but gain an extra point if they win.
+        </p>
+        <p>
+            This feature is designed to add an extra layer of excitement and challenge to games, encouraging faster play and strategic decision-making.
+        </p>
+    </section>
+
+    <section>
+        <h2>Purpose of Berserk in Lichess</h2>
+        <p>
+            The primary purpose of the Berserk option is to promote dynamic and aggressive play. It rewards players who are willing to take on a time disadvantage for the chance to secure an additional point in the game.
+        </p>
+        <p>
+            Berserking can be a strategic choice, especially in faster time controls, where quick decision-making and time management can make a significant impact on the outcome of the game.
+        </p>
+    </section>
+
+    <section>
+        <h2>Why Lichess Uses the Berserk System</h2>
+        <p>
+            Lichess incorporates the Berserk system to diversify gameplay and offer players an option to inject more excitement into their matches. It aligns with the platform's commitment to providing a dynamic and engaging chess experience.
+        </p>
+        <p>
+            The Berserk system contributes to the unique and innovative features that make Lichess stand out among online chess platforms.
+        </p>
+    </section>
+
+    <section>
+        <h2>Modern Working Graph</h2>
+        <div class="graph-container">
+            <canvas id="berserkGraph"></canvas>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // JavaScript code for the modern working graph using Chart.js
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('berserkGraph').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Wins', 'Losses', 'Draws'],
+                    datasets: [{
+                        label: 'Berserk Results',
+                        data: [20, 10, 5], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 255, 0, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 255, 0, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

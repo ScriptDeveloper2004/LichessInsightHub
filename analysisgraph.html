@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post-Game Analysis Graph - Lichess Insight Hub</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Post-Game Analysis Graph</h1>
+        <p>Unlock the Secrets of Lichess</p>
+    </header>
+
+    <section>
+        <h2>How the Post-Game Analysis Graph Works</h2>
+        <p>
+            The Post-Game Analysis Graph on Lichess provides a visual representation of key metrics from your completed games. It includes insights into move accuracy, time management, and other aspects, allowing players to reflect on their performance.
+        </p>
+        <p>
+            This feature aids players in understanding their strengths and areas for improvement, contributing to skill development and strategic growth.
+        </p>
+    </section>
+
+    <section>
+        <h2>Purpose of Post-Game Analysis Graph in Lichess</h2>
+        <p>
+            The primary purpose of the Post-Game Analysis Graph is to offer players a detailed breakdown of their gameplay. It assists in identifying patterns, evaluating strategic decisions, and enhancing overall game understanding.
+        </p>
+        <p>
+            By providing a visual representation of move accuracy and other metrics, Lichess empowers players to learn from their experiences and refine their chess strategies.
+        </p>
+    </section>
+
+    <section>
+        <h2>Why Lichess Uses Post-Game Analysis Graph System</h2>
+        <p>
+            Lichess integrates the Post-Game Analysis Graph System to foster a culture of improvement and learning within the chess community. It aligns with the platform's commitment to providing players with comprehensive tools to enhance their skills.
+        </p>
+        <p>
+            The Post-Game Analysis Graph contributes to the educational aspect of Lichess, allowing players to dive deeper into their games and gain valuable insights for continuous progress.
+        </p>
+    </section>
+
+    <section>
+        <h2>Modern Working Graph</h2>
+        <div class="graph-container">
+            <!-- Chart.js Graph -->
+            <canvas id="chartJsGraph"></canvas>
+        </div>
+        <div class="graph-container">
+            <!-- D3.js Graph -->
+            <svg id="d3JsGraph"></svg>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // JavaScript code for the modern working graphs using Chart.js and D3.js
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chart.js
+            var ctxChartJs = document.getElementById('chartJsGraph').getContext('2d');
+            var myChart = new Chart(ctxChartJs, {
+                type: 'line',
+                data: {
+                    labels: ['Game 1', 'Game 2', 'Game 3'],
+                    datasets: [{
+                        label: 'Move Accuracy',
+                        data: [75, 85, 90], // Replace with actual data
+                        borderColor: '#3498db',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // D3.js
+            var svg = d3.select('#d3JsGraph');
+            var data = [10, 20, 30];
+
+            svg.selectAll('rect')
+                .data(data)
+                .enter().append('rect')
+                .attr('x', function (d, i) { return i * 40; })
+                .attr('y', function (d) { return 100 - d; })
+                .attr('width', 30)
+                .attr('height', function (d) { return d; })
+                .attr('fill', '#3498db');
+        });
+    </script>
+</body>
+</html>

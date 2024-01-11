@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess Rating System Demystified - Lichess Insight Hub</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lichess Rating System Demystified</h1>
+        <p>Unveiling the Secrets of Lichess Ratings</p>
+    </header>
+
+    <section>
+        <h2>How the Lichess Rating System Works</h2>
+        <p>
+            The Lichess Rating System assigns a numerical rating to each player, representing their skill level. The system utilizes the Glicko rating system, a mathematical model designed for chess and other competitive games.
+        </p>
+        <p>
+            The rating is dynamic and adjusts after each game based on the player's performance and the strength of their opponents.
+        </p>
+    </section>
+
+    <section>
+        <h2>Purpose of Lichess Rating System</h2>
+        <p>
+            The primary purpose of the Lichess Rating System is to provide a fair and accurate reflection of a player's chess skills. It allows players to gauge their progress, find suitable opponents, and ensures balanced matchmaking.
+        </p>
+        <p>
+            The transparent nature of the rating system adds credibility and trust to the Lichess platform, contributing to its reputation as a leading online chess community.
+        </p>
+    </section>
+
+    <section>
+        <h2>Why Lichess Uses the Rating System</h2>
+        <p>
+            Lichess employs the Glicko rating system for its accuracy and adaptability. The system factors in the uncertainty of a player's rating and adjusts it dynamically, providing a realistic representation of their current skill level.
+        </p>
+        <p>
+            This commitment to accuracy enhances the overall chess experience on Lichess, fostering a competitive and enjoyable environment for players of all levels.
+        </p>
+    </section>
+
+    <section>
+        <h2>Modern Working Graphs</h2>
+        <div class="graph-container">
+            <!-- Chart.js Rating Graph -->
+            <canvas id="ratingGraphChartJS"></canvas>
+        </div>
+        <div class="graph-container">
+            <!-- D3.js Rating Graph -->
+            <svg id="ratingGraphD3"></svg>
+        </div>
+    </section>
+
+    <section>
+        <h2>Glicko Rating Chart</h2>
+        <div class="graph-container">
+            <!-- Include your Glicko rating chart here -->
+            <p>Placeholder for Glicko rating chart</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Real Rating Graph</h2>
+        <div class="graph-container">
+            <!-- Include image from Imgur -->
+            <img src="https://your-imgur-link-here" alt="Real Rating Graph">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // JavaScript code for the modern working graphs using Chart.js and D3.js
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chart.js Rating Graph
+            var ctxChartJS = document.getElementById('ratingGraphChartJS').getContext('2d');
+            var myChartChartJS = new Chart(ctxChartJS, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                    datasets: [{
+                        label: 'Rapid',
+                        data: [1500, 1550, 1520, 1600, 1580], // Replace with actual data
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }, {
+                        label: 'Blitz',
+                        data: [1600, 1620, 1610, 1580, 1650], // Replace with actual data
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }, {
+                        label: 'Bullet',
+                        data: [1400, 1450, 1430, 1420, 1440], // Replace with actual data
+                        borderColor: 'rgba(255, 255, 0, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }, {
+                        label: 'Classical',
+                        data: [1700, 1680, 1720, 1750, 1740], // Replace with actual data
+                        borderColor: 'rgba(255, 150, 0, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom'
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // D3.js Rating Graph
+            var dataD3 = [
+                { month: 'Jan', rapid: 1500, blitz: 1600, bullet: 1400, classical: 1700 },
+                { month: 'Feb', rapid: 1550, blitz: 1620, bullet: 1450, classical: 1680 },
+                { month: 'Mar', rapid: 1520, blitz: 1610, bullet: 1430, classical: 1720 },
+                { month: 'Apr', rapid: 1600, blitz: 1580, bullet: 1420, classical: 1750 },
+                { month: 'May', rapid: 1580, blitz: 1650, bullet: 1440, classical: 1740 }
+            ];
+
+            var margin = { top: 10, right: 30, bottom: 30, left: 60 };
+            var width = 600 - margin.left - margin.right;
+            var height = 400 - margin.top - margin.bottom;
+
+            var svg = d3.select('#ratingGraphD3')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+            var x = d3.scaleBand()
+                .domain(dataD3.map(d => d.month))
+                .range([0, width])
+                .padding(0.1);
+
+            var y = d3.scaleLinear()
+                .domain([d3.min(dataD3, d => d.rapid), d3.max(dataD3, d => d.classical)])
+                .range([height, 0]);
+
+            var color = d3.scaleOrdinal()
+                .domain(['rapid', 'blitz', 'bullet', 'classical'])
+                .range(['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 255, 0, 1)', 'rgba(255, 150, 0, 1)']);
+
+            var xAxis = d3.axisBottom(x);
+            var yAxis = d3.axisLeft(y);
+
+            svg.append('g')
+                .attr('transform', 'translate(0,' + height + ')')
+                .call(xAxis);
+
+            svg.append('g')
+                .call(yAxis);
+
+            svg.selectAll()
+                .data(dataD3)
+                .enter().append('rect')
+                .attr('x', d => x(d.month))
+                .attr('y', d => y(d.rapid))
+                .attr('width', x.bandwidth())
+                .attr('height', d => height - y(d.rapid))
+                .attr('fill', color('rapid'))
+                .on('mouseover', function (event, d) {
+                    d3.select(this).attr('fill', d3.rgb(color('rapid')).darker());
+                })
+                .on('mouseout', function (event, d) {
+                    d3.select(this).attr('fill', color('rapid'));
+                });
+
+            // Include Glicko rating chart and Imgur image option here
+            // Glicko rating chart and Imgur image placeholders are added
+            // You can replace them with actual content as needed
+
+            // Placeholder for Glicko rating chart
+            var glickoRatingChartPlaceholder = document.createElement('p');
+            glickoRatingChartPlaceholder.textContent = 'Placeholder for Glicko rating chart';
+            document.querySelector('.graph-container').appendChild(glickoRatingChartPlaceholder);
+
+            // Placeholder for Imgur image
+            var imgurImagePlaceholder = document.createElement('img');
+            imgurImagePlaceholder.src = 'https://your-imgur-link-here';
+            imgurImagePlaceholder.alt = 'Real Rating Graph';
+            document.querySelector('.graph-container').appendChild(imgurImagePlaceholder);
+        });
+    </script>
+</body>
+</html>

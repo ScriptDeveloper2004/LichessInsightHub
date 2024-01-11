@@ -83,42 +83,45 @@
     <section>
         <h2>How the Post-Game Analysis Graph Works</h2>
         <p>
-            The Post-Game Analysis Graph on Lichess provides a visual representation of key metrics from your completed games. It includes insights into move accuracy, time management, and other aspects, allowing players to reflect on their performance.
+            The Post-Game Analysis Graph on Lichess provides players with a visual representation of their moves throughout the game. It displays move accuracy, mistakes, and other key metrics, allowing players to analyze and improve their gameplay.
         </p>
         <p>
-            This feature aids players in understanding their strengths and areas for improvement, contributing to skill development and strategic growth.
+            This feature is designed to help players understand their strengths and weaknesses, ultimately leading to skill enhancement and better strategic decisions.
         </p>
     </section>
 
     <section>
         <h2>Purpose of Post-Game Analysis Graph in Lichess</h2>
         <p>
-            The primary purpose of the Post-Game Analysis Graph is to offer players a detailed breakdown of their gameplay. It assists in identifying patterns, evaluating strategic decisions, and enhancing overall game understanding.
+            The primary purpose of the Post-Game Analysis Graph is to offer players a detailed breakdown of their performance. It enables players to identify patterns, evaluate move accuracy, and gain insights into their decision-making during the game.
         </p>
         <p>
-            By providing a visual representation of move accuracy and other metrics, Lichess empowers players to learn from their experiences and refine their chess strategies.
+            By visualizing the game data, players can tailor their training to focus on specific aspects, fostering continuous improvement and a deeper understanding of chess strategies.
         </p>
     </section>
 
     <section>
-        <h2>Why Lichess Uses Post-Game Analysis Graph System</h2>
+        <h2>Why Lichess Uses the Post-Game Analysis Graph System</h2>
         <p>
-            Lichess integrates the Post-Game Analysis Graph System to foster a culture of improvement and learning within the chess community. It aligns with the platform's commitment to providing players with comprehensive tools to enhance their skills.
+            Lichess incorporates the Post-Game Analysis Graph System to provide players with valuable tools for self-assessment and improvement. It aligns with the platform's commitment to fostering a learning environment and helping players progress in their chess journey.
         </p>
         <p>
-            The Post-Game Analysis Graph contributes to the educational aspect of Lichess, allowing players to dive deeper into their games and gain valuable insights for continuous progress.
+            The Post-Game Analysis Graph System enhances the overall chess experience on Lichess, making it a preferred choice for players seeking a platform that prioritizes skill development.
         </p>
     </section>
 
     <section>
         <h2>Modern Working Graph</h2>
         <div class="graph-container">
-            <!-- Chart.js Graph -->
-            <canvas id="chartJsGraph"></canvas>
+            <canvas id="analysisGraphChartJs"></canvas>
+            <canvas id="analysisGraphD3"></canvas>
         </div>
+    </section>
+
+    <section>
+        <h2>Move Accuracy Graph System (Updated)</h2>
         <div class="graph-container">
-            <!-- D3.js Graph -->
-            <svg id="d3JsGraph"></svg>
+            <canvas id="accuracyGraph"></canvas>
         </div>
     </section>
 
@@ -128,49 +131,76 @@
 
     <!-- Chart.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <!-- D3.js Library -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
     <script>
-        // JavaScript code for the modern working graphs using Chart.js and D3.js
+        // JavaScript code for the modern working graph using Chart.js
         document.addEventListener('DOMContentLoaded', function () {
-            // Chart.js
-            var ctxChartJs = document.getElementById('chartJsGraph').getContext('2d');
-            var myChart = new Chart(ctxChartJs, {
-                type: 'line',
+            var ctxChartJs = document.getElementById('analysisGraphChartJs').getContext('2d');
+            var myChartChartJs = new Chart(ctxChartJs, {
+                type: 'bar',
                 data: {
-                    labels: ['Game 1', 'Game 2', 'Game 3'],
+                    labels: ['Accuracy', 'Mistakes', 'Blunders'],
                     datasets: [{
-                        label: 'Move Accuracy',
-                        data: [75, 85, 90], // Replace with actual data
-                        borderColor: '#3498db',
-                        borderWidth: 2,
-                        fill: false
+                        label: 'Move Analysis (Chart.js)',
+                        data: [80, 10, 5], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 255, 0, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 255, 0, 1)'
+                        ],
+                        borderWidth: 1
                     }]
                 },
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true,
-                            max: 100
+                            beginAtZero: true
                         }
                     }
                 }
             });
+        });
 
-            // D3.js
-            var svg = d3.select('#d3JsGraph');
-            var data = [10, 20, 30];
+        // JavaScript code for the modern working graph using D3.js
+        document.addEventListener('DOMContentLoaded', function () {
+            var dataD3 = [80, 10, 5]; // Replace with actual data
+            var svg = d3.select("#analysisGraphD3")
+                .append("svg")
+                .attr("width", "100%")
+                .attr("height", "100%");
 
-            svg.selectAll('rect')
-                .data(data)
-                .enter().append('rect')
-                .attr('x', function (d, i) { return i * 40; })
-                .attr('y', function (d) { return 100 - d; })
-                .attr('width', 30)
-                .attr('height', function (d) { return d; })
-                .attr('fill', '#3498db');
+            svg.selectAll("rect")
+                .data(dataD3)
+                .enter()
+                .append("rect")
+                .attr("x", function (d, i) {
+                    return i * (100 / dataD3.length) + "%";
+                })
+                .attr("y", function (d) {
+                    return 100 - d + "%";
+                })
+                .attr("width", 100 / dataD3.length + "%")
+                .attr("height", function (d) {
+                    return d + "%";
+                })
+                .attr("fill", function (d, i) {
+                    return i === 0 ? "rgba(75, 192, 192, 0.2)" :
+                           i === 1 ? "rgba(255, 99, 132, 0.2)" :
+                                    "rgba(255, 255, 0, 0.2)";
+                })
+                .attr("stroke", function (d, i) {
+                    return i === 0 ? "rgba(75, 192, 192, 1)" :
+                           i === 1 ? "rgba(255, 99, 132, 1)" :
+                                    "rgba(255, 255, 0, 1)";
+                })
+                .attr("stroke-width", 1);
         });
     </script>
 </body>

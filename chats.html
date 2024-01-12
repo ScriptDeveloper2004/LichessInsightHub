@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess Chat System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Lichess Chat System</h1>
+        <p>Connecting Chess Enthusiasts through Chat</p>
+    </header>
+
+    <section>
+        <h2>How the Chat System Works on Lichess</h2>
+        <p>
+            The Lichess Chat System allows users to engage in real-time conversations with other chess enthusiasts. It serves as a platform for players to discuss strategies, analyze games, and build a sense of community within the Lichess ecosystem.
+        </p>
+        <p>
+            Users can send direct messages, participate in group chats, and enhance their overall chess experience through collaborative interactions.
+        </p>
+    </section>
+
+    <section>
+        <h2>Rights of a Chat User on Lichess</h2>
+        <p>
+            Chat users on Lichess have the right to communicate respectfully and share their insights with the community. The platform promotes a positive and inclusive environment, ensuring that users can enjoy chess-related discussions while adhering to community guidelines.
+        </p>
+        <p>
+            Lichess actively moderates chat content to maintain a welcoming space for players of all levels and backgrounds.
+        </p>
+    </section>
+
+    <section>
+        <h2>Modern Working Graphs</h2>
+        <div class="graph-container">
+            <!-- Chart.js Chat System Graph -->
+            <canvas id="chatSystemGraphChartJS"></canvas>
+        </div>
+        <div class="graph-container">
+            <!-- D3.js Chat System Graph -->
+            <svg id="chatSystemGraphD3"></svg>
+        </div>
+    </section>
+
+    <section>
+        <h2>Chat Activity Over Time</h2>
+        <div class="graph-container">
+            <!-- Placeholder for Image -->
+            <p>Placeholder for Image</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // JavaScript code for the modern working graphs using Chart.js and D3.js
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chart.js Chat System Graph
+            var ctxChartJS = document.getElementById('chatSystemGraphChartJS').getContext('2d');
+            var myChartChartJS = new Chart(ctxChartJS, {
+                type: 'bar',
+                data: {
+                    labels: ['User X', 'User Y', 'User Z'],
+                    datasets: [{
+                        label: 'Chat Activity (Chart.js)',
+                        data: [150, 200, 180], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 255, 0, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 255, 0, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 250 // Set maximum chat activity
+                        }
+                    }
+                }
+            });
+
+            // D3.js Chat System Graph
+            var dataD3 = [
+                { user: 'User X', activity: 150 },
+                { user: 'User Y', activity: 200 },
+                { user: 'User Z', activity: 180 }
+            ];
+
+            var margin = { top: 10, right: 30, bottom: 30, left: 60 };
+            var width = 600 - margin.left - margin.right;
+            var height = 400 - margin.top - margin.bottom;
+
+            var svg = d3.select('#chatSystemGraphD3')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+            var x = d3.scaleBand()
+                .domain(dataD3.map(d => d.user))
+                .range([0, width])
+                .padding(0.1);
+
+            var y = d3.scaleLinear()
+                .domain([d3.min(dataD3, d => d.activity), d3.max(dataD3, d => d.activity)])
+                .range([height, 0]);
+
+            var color = d3.scaleOrdinal()
+                .domain(dataD3.map(d => d.user))
+                .range(['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 255, 0, 1)']);
+
+            var xAxis = d3.axisBottom(x);
+            var yAxis = d3.axisLeft(y);
+
+            svg.append('g')
+                .attr('transform', 'translate(0,' + height + ')')
+                .call(xAxis);
+
+            svg.append('g')
+                .call(yAxis);
+
+            svg.selectAll()
+                .data(dataD3)
+                .enter().append('rect')
+                .attr('x', d => x(d.user))
+                .attr('y', d => y(d.activity))
+                .attr('width', x.bandwidth())
+                .attr('height', d => height - y(d.activity))
+                .attr('fill', d => color(d.user))
+                .on('mouseover', function (event, d) {
+                    d3.select(this).attr('fill', d3.rgb(color(d.user)).darker());
+                })
+                .on('mouseout', function (event, d) {
+                    d3.select(this).attr('fill', color(d.user));
+                });
+        });
+    </script>
+</body>
+
+</html>

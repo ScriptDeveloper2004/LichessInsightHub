@@ -154,26 +154,34 @@
             // Chart.js Rating Graph
             var ctxChartJS = document.getElementById('ratingGraphChartJS').getContext('2d');
             var myChartChartJS = new Chart(ctxChartJS, {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
                     datasets: [{
                         label: 'Rapid',
-                        data: [1500, 1550, 1520, 1600, 1580, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000], // Increased data flow till 2000
+                        data: [1500, 1550, 1520, 1600, 1580],
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
                         borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 2,
-                        fill: false
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Blitz',
+                        data: [1600, 1620, 1610, 1580, 1650],
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
                     }]
                 },
                 options: {
                     scales: {
                         x: {
-                            type: 'linear',
-                            position: 'bottom'
+                            stacked: true,
+                            beginAtZero: true
                         },
                         y: {
+                            stacked: true,
                             beginAtZero: true,
-                            max: 2000 // Increased maximum rating
+                            max: 2000
                         }
                     }
                 }
@@ -221,20 +229,23 @@
             svg.append('g')
                 .call(yAxis);
 
-            svg.selectAll()
-                .data(dataD3)
-                .enter().append('rect')
-                .attr('x', d => x(d.month))
-                .attr('y', d => y(d.rapid))
-                .attr('width', x.bandwidth())
-                .attr('height', d => height - y(d.rapid))
-                .attr('fill', color('rapid'))
-                .on('mouseover', function (event, d) {
-                    d3.select(this).attr('fill', d3.rgb(color('rapid')).darker());
-                })
-                .on('mouseout', function (event, d) {
-                    d3.select(this).attr('fill', color('rapid'));
-                });
+            // Draw bars for Rapid and Blitz ratings
+            ['rapid', 'blitz'].forEach(category => {
+                svg.selectAll()
+                    .data(dataD3)
+                    .enter().append('rect')
+                    .attr('x', d => x(d.month))
+                    .attr('y', d => y(d[category]))
+                    .attr('width', x.bandwidth())
+                    .attr('height', d => height - y(d[category]))
+                    .attr('fill', color(category))
+                    .on('mouseover', function (event, d) {
+                        d3.select(this).attr('fill', d3.rgb(color(category)).darker());
+                    })
+                    .on('mouseout', function (event, d) {
+                        d3.select(this).attr('fill', color(category));
+                    });
+            });
         });
 
         // Function to generate the working graph

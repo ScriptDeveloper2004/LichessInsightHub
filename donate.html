@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess Donation - Support Open-Source Chess</title>
+    <style>
+        /* Your CSS styling goes here */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lichess Donation</h1>
+        <p>Support Open-Source Chess</p>
+    </header>
+
+    <section>
+        <h2>How Lichess Donation System Works</h2>
+        <p>
+            The Lichess Donation System allows users to contribute funds to support the platform's continued development and maintenance. Donations play a crucial role in keeping Lichess free and open-source for millions of players worldwide.
+        </p>
+        <p>
+            When you make a donation, you're contributing to server costs, feature enhancements, and the overall improvement of the Lichess experience.
+        </p>
+    </section>
+
+    <section>
+        <h2>Purpose of Lichess Donate and Get Patron Wings</h2>
+        <p>
+            Lichess encourages users to become Patrons by donating. Becoming a Patron not only supports the platform but also unlocks special features, such as the coveted Patron Wings badge.
+        </p>
+        <p>
+            Patron Wings signify your support for Lichess, and patrons often enjoy early access to new features, recognition on the platform, and a sense of pride in contributing to the chess community.
+        </p>
+    </section>
+
+    <section>
+        <h2>Why Lichess Uses Donation Despite Being Free and Open-Source</h2>
+        <p>
+            While Lichess is committed to remaining free and open-source forever, running a platform of this scale incurs significant operational costs. Donations from users ensure the platform's sustainability, allowing Lichess to maintain its high-quality service and provide an ad-free and user-friendly chess environment.
+        </p>
+    </section>
+
+    <section>
+        <h2>How to Become a Lichess Patron</h2>
+        <p>
+            Becoming a Lichess Patron is easy. Simply click on the "Donate" button, choose your contribution amount, and follow the instructions to complete the donation process. Once confirmed, you'll be recognized as a Patron with the exclusive Patron Wings badge.
+        </p>
+    </section>
+
+    <section>
+        <h2>Modern Working Graphs</h2>
+        <div class="graph-container">
+            <!-- Chart.js Donation System Graph -->
+            <canvas id="donationGraphChartJS"></canvas>
+        </div>
+        <div class="graph-container">
+            <!-- D3.js Patron Wings Graph -->
+            <svg id="patronWingsGraphD3"></svg>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // JavaScript code for the modern working graphs using Chart.js and D3.js
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chart.js Donation System Graph
+            var ctxChartJS = document.getElementById('donationGraphChartJS').getContext('2d');
+            var myChartChartJS = new Chart(ctxChartJS, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                    datasets: [{
+                        label: 'Donations',
+                        data: [100, 150, 120, 180, 200], // Replace with actual data
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom'
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // D3.js Patron Wings Graph
+            var dataD3 = [
+                { month: 'Jan', patrons: 5 },
+                { month: 'Feb', patrons: 10 },
+                { month: 'Mar', patrons: 8 },
+                { month: 'Apr', patrons: 12 },
+                { month: 'May', patrons: 15 }
+            ];
+
+            var margin = { top: 10, right: 30, bottom: 30, left: 60 };
+            var width = 600 - margin.left - margin.right;
+            var height = 400 - margin.top - margin.bottom;
+
+            var svg = d3.select('#patronWingsGraphD3')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+            var x = d3.scaleBand()
+                .domain(dataD3.map(d => d.month))
+                .range([0, width])
+                .padding(0.1);
+
+            var y = d3.scaleLinear()
+                .domain([0, d3.max(dataD3, d => d.patrons)])
+                .range([height, 0]);
+
+            var color = d3.scaleOrdinal()
+                .range(['rgba(75, 192, 192, 1)']);
+
+            var xAxis = d3.axisBottom(x);
+            var yAxis = d3.axisLeft(y);
+
+            svg.append('g')
+                .attr('transform', 'translate(0,' + height + ')')
+                .call(xAxis);
+
+            svg.append('g')
+                .call(yAxis);
+
+            svg.selectAll()
+                .data(dataD3)
+                .enter().append('rect')
+                .attr('x', d => x(d.month))
+                .attr('y', d => y(d.patrons))
+                .attr('width', x.bandwidth())
+                .attr('height', d => height - y(d.patrons))
+                .attr('fill', color('patrons'))
+                .on('mouseover', function (event, d) {
+                    d3.select(this).attr('fill', d3.rgb(color('patrons')).darker());
+                })
+                .on('mouseout', function (event, d) {
+                    d3.select(this).attr('fill', color('patrons'));
+                });
+        });
+    </script>
+</body>
+</html>

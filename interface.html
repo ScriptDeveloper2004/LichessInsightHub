@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess User Interface System - Lichess Insight Hub</title>
+    <style>
+        /* Add your CSS styling here */
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lichess User Interface System</h1>
+        <p>Exploring the Interface of Lichess</p>
+    </header>
+
+    <section>
+        <h2>How the Lichess User Interface Works</h2>
+        <p>
+            The Lichess User Interface provides a seamless experience for players, offering intuitive navigation, account management, and game interaction. It is designed to enhance the overall chess-playing experience and make it accessible to users of all skill levels.
+        </p>
+        <!-- Add more details about the user interface system -->
+    </section>
+
+    <section>
+        <h2>Rights of a User Interface on Lichess</h2>
+        <p>
+            Users on Lichess have the right to a clean, user-friendly interface that facilitates easy game navigation, communication, and account management. The interface ensures a fair and enjoyable chess-playing environment for all participants.
+        </p>
+        <!-- Add more details about user rights in the Lichess interface -->
+    </section>
+
+    <section>
+        <h2>Modern Working Graphs</h2>
+        <div class="graph-container">
+            <!-- Chart.js UI Graph -->
+            <canvas id="uiGraphChartJS"></canvas>
+        </div>
+        <div class="graph-container">
+            <!-- D3.js Home Page Graph -->
+            <svg id="homePageGraphD3"></svg>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // JavaScript code for the modern working graphs using Chart.js and D3.js
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chart.js UI Graph
+            var ctxChartJS = document.getElementById('uiGraphChartJS').getContext('2d');
+            var myChartChartJS = new Chart(ctxChartJS, {
+                type: 'bar',
+                data: {
+                    labels: ['Navigation', 'Communication', 'Account Management'],
+                    datasets: [{
+                        label: 'UI Features (Chart.js)',
+                        data: [90, 80, 85], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 255, 0, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 255, 0, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // D3.js Home Page Graph
+            var dataD3 = [
+                { feature: 'Games', percentage: 30 },
+                { feature: 'Tournaments', percentage: 25 },
+                { feature: 'Puzzles', percentage: 20 },
+                { feature: 'Learn', percentage: 15 },
+                { feature: 'Community', percentage: 10 }
+            ];
+
+            var margin = { top: 10, right: 30, bottom: 30, left: 60 };
+            var width = 600 - margin.left - margin.right;
+            var height = 400 - margin.top - margin.bottom;
+
+            var svg = d3.select('#homePageGraphD3')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+            var x = d3.scaleBand()
+                .domain(dataD3.map(d => d.feature))
+                .range([0, width])
+                .padding(0.1);
+
+            var y = d3.scaleLinear()
+                .domain([0, d3.max(dataD3, d => d.percentage)])
+                .range([height, 0]);
+
+            var color = d3.scaleOrdinal()
+                .domain(dataD3.map(d => d.feature))
+                .range(['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 255, 0, 1)', 'rgba(255, 150, 0, 1)', 'rgba(150, 255, 0, 1)']);
+
+            var xAxis = d3.axisBottom(x);
+            var yAxis = d3.axisLeft(y);
+
+            svg.append('g')
+                .attr('transform', 'translate(0,' + height + ')')
+                .call(xAxis);
+
+            svg.append('g')
+                .call(yAxis);
+
+            svg.selectAll()
+                .data(dataD3)
+                .enter().append('rect')
+                .attr('x', d => x(d.feature))
+                .attr('y', d => y(d.percentage))
+                .attr('width', x.bandwidth())
+                .attr('height', d => height - y(d.percentage))
+                .attr('fill', d => color(d.feature))
+                .on('mouseover', function (event, d) {
+                    d3.select(this).attr('fill', d3.rgb(color(d.feature)).darker());
+                })
+                .on('mouseout', function (event, d) {
+                    d3.select(this).attr('fill', color(d.feature));
+                });
+        });
+    </script>
+</body>
+</html>

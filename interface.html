@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lichess User Interface System - Lichess Insight Hub</title>
     <style>
-        /* Add your CSS styling here */
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -79,35 +77,44 @@
 <body>
     <header>
         <h1>Lichess User Interface System</h1>
-        <p>Exploring the Interface of Lichess</p>
+        <p>Exploring the Interface for Lichess Users</p>
     </header>
 
     <section>
-        <h2>How the Lichess User Interface Works</h2>
+        <h2>How the Lichess User Interface System Works</h2>
         <p>
-            The Lichess User Interface provides a seamless experience for players, offering intuitive navigation, account management, and game interaction. It is designed to enhance the overall chess-playing experience and make it accessible to users of all skill levels.
+            The Lichess User Interface System is designed to provide users with an intuitive and seamless experience. It encompasses various elements, such as the registration process, dashboard layout, and interactive features that enhance the overall chess-playing experience.
         </p>
-        <!-- Add more details about the user interface system -->
+        <p>
+            From the moment users register an account, the interface guides them through different sections, offering easy navigation and access to essential tools and information.
+        </p>
     </section>
 
     <section>
-        <h2>Rights of a User Interface on Lichess</h2>
+        <h2>Purpose of Lichess User Interface System</h2>
         <p>
-            Users on Lichess have the right to a clean, user-friendly interface that facilitates easy game navigation, communication, and account management. The interface ensures a fair and enjoyable chess-playing environment for all participants.
+            The primary purpose of the Lichess User Interface System is to create an environment where users can register, navigate, and engage with the platform effortlessly. It ensures that users have access to essential features like game analysis, settings customization, and a user-friendly dashboard.
         </p>
-        <!-- Add more details about user rights in the Lichess interface -->
+        <p>
+            By prioritizing user experience, Lichess aims to make online chess accessible to players of all skill levels, fostering a vibrant and inclusive community.
+        </p>
     </section>
 
     <section>
         <h2>Modern Working Graphs</h2>
         <div class="graph-container">
-            <!-- Chart.js UI Graph -->
+            <!-- Chart.js User Interface Graph -->
             <canvas id="uiGraphChartJS"></canvas>
         </div>
-        <div class="graph-container">
-            <!-- D3.js Home Page Graph -->
-            <svg id="homePageGraphD3"></svg>
-        </div>
+    </section>
+
+    <section>
+        <h2>Home Page System</h2>
+        <p>
+            The Lichess Home Page serves as the central hub for users, offering quick access to ongoing games, challenges, and personalized recommendations. It is designed to provide a tailored experience based on the user's preferences and playing history.
+        </p>
+        <!-- Placeholder for the image -->
+        <img src="your-imgur-image-link" alt="Lichess Home Page Image" style="max-width: 100%; border-radius: 8px;">
     </section>
 
     <footer>
@@ -117,30 +124,28 @@
     <!-- Chart.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- D3.js Library -->
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-
     <script>
-        // JavaScript code for the modern working graphs using Chart.js and D3.js
+        // JavaScript code for the modern working graph using Chart.js
         document.addEventListener('DOMContentLoaded', function () {
-            // Chart.js UI Graph
             var ctxChartJS = document.getElementById('uiGraphChartJS').getContext('2d');
             var myChartChartJS = new Chart(ctxChartJS, {
                 type: 'bar',
                 data: {
-                    labels: ['Navigation', 'Communication', 'Account Management'],
+                    labels: ['Registration', 'Dashboard', 'Game Interface', 'Settings'],
                     datasets: [{
-                        label: 'UI Features (Chart.js)',
-                        data: [90, 80, 85], // Replace with actual data
+                        label: 'User Interface (Chart.js)',
+                        data: [90, 80, 95, 75], // Replace with actual data
                         backgroundColor: [
                             'rgba(75, 192, 192, 0.2)',
                             'rgba(255, 99, 132, 0.2)',
-                            'rgba(255, 255, 0, 0.2)'
+                            'rgba(255, 255, 0, 0.2)',
+                            'rgba(255, 150, 0, 0.2)'
                         ],
                         borderColor: [
                             'rgba(75, 192, 192, 1)',
                             'rgba(255, 99, 132, 1)',
-                            'rgba(255, 255, 0, 1)'
+                            'rgba(255, 255, 0, 1)',
+                            'rgba(255, 150, 0, 1)'
                         ],
                         borderWidth: 1
                     }]
@@ -153,63 +158,6 @@
                     }
                 }
             });
-
-            // D3.js Home Page Graph
-            var dataD3 = [
-                { feature: 'Games', percentage: 30 },
-                { feature: 'Tournaments', percentage: 25 },
-                { feature: 'Puzzles', percentage: 20 },
-                { feature: 'Learn', percentage: 15 },
-                { feature: 'Community', percentage: 10 }
-            ];
-
-            var margin = { top: 10, right: 30, bottom: 30, left: 60 };
-            var width = 600 - margin.left - margin.right;
-            var height = 400 - margin.top - margin.bottom;
-
-            var svg = d3.select('#homePageGraphD3')
-                .attr('width', width + margin.left + margin.right)
-                .attr('height', height + margin.top + margin.bottom)
-                .append('g')
-                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-            var x = d3.scaleBand()
-                .domain(dataD3.map(d => d.feature))
-                .range([0, width])
-                .padding(0.1);
-
-            var y = d3.scaleLinear()
-                .domain([0, d3.max(dataD3, d => d.percentage)])
-                .range([height, 0]);
-
-            var color = d3.scaleOrdinal()
-                .domain(dataD3.map(d => d.feature))
-                .range(['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 255, 0, 1)', 'rgba(255, 150, 0, 1)', 'rgba(150, 255, 0, 1)']);
-
-            var xAxis = d3.axisBottom(x);
-            var yAxis = d3.axisLeft(y);
-
-            svg.append('g')
-                .attr('transform', 'translate(0,' + height + ')')
-                .call(xAxis);
-
-            svg.append('g')
-                .call(yAxis);
-
-            svg.selectAll()
-                .data(dataD3)
-                .enter().append('rect')
-                .attr('x', d => x(d.feature))
-                .attr('y', d => y(d.percentage))
-                .attr('width', x.bandwidth())
-                .attr('height', d => height - y(d.percentage))
-                .attr('fill', d => color(d.feature))
-                .on('mouseover', function (event, d) {
-                    d3.select(this).attr('fill', d3.rgb(color(d.feature)).darker());
-                })
-                .on('mouseout', function (event, d) {
-                    d3.select(this).attr('fill', color(d.feature));
-                });
         });
     </script>
 </body>

@@ -154,19 +154,12 @@
                     },
                     plugins: {
                         legend: {
-                            display: false
+                            display: true,
+                            position: 'top'
                         },
                         tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    var label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    label += context.parsed.y;
-                                    return label;
-                                }
-                            }
+                            mode: 'index',
+                            intersect: false
                         }
                     }
                 }

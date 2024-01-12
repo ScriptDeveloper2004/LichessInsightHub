@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess Leaderboard System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Lichess Leaderboard System</h1>
+        <p>Exploring the Leaderboard on Lichess</p>
+    </header>
+
+    <section>
+        <h2>How the Lichess Leaderboard Works</h2>
+        <p>
+            The Lichess Leaderboard is a dynamic system that ranks players based on their performance. It considers factors such as win-loss ratios, game completion rates, and overall gameplay quality to determine player rankings.
+        </p>
+        <p>
+            The leaderboard fosters healthy competition and allows players to track their progress, providing a sense of accomplishment within the Lichess community.
+        </p>
+    </section>
+
+    <section>
+        <h2>Rights of a Leaderboard on Lichess</h2>
+        <p>
+            The leaderboard offers players the right to showcase their skills and achievements prominently. It provides a platform for recognition within the Lichess community, motivating players to improve and compete at a higher level.
+        </p>
+        <p>
+            Lichess ensures fair and transparent ranking mechanisms, contributing to a positive competitive environment.
+        </p>
+    </section>
+
+    <section>
+        <h2>Modern Working Graphs</h2>
+        <div class="graph-container">
+            <!-- Chart.js Leaderboard Graph -->
+            <canvas id="leaderboardGraphChartJS"></canvas>
+        </div>
+        <div class="graph-container">
+            <!-- D3.js Leaderboard Graph -->
+            <svg id="leaderboardGraphD3"></svg>
+        </div>
+    </section>
+
+    <section>
+        <h2>System Behind the Leaderboard</h2>
+        <div class="graph-container">
+            <!-- Placeholder for System Behind Leaderboard -->
+            <p>Placeholder for System Behind Leaderboard</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // JavaScript code for the modern working graphs using Chart.js and D3.js
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chart.js Leaderboard Graph
+            var ctxChartJS = document.getElementById('leaderboardGraphChartJS').getContext('2d');
+            var myChartChartJS = new Chart(ctxChartJS, {
+                type: 'bar',
+                data: {
+                    labels: ['Player A', 'Player B', 'Player C'],
+                    datasets: [{
+                        label: 'Leaderboard Analysis (Chart.js)',
+                        data: [1200, 1350, 1280], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 255, 0, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 255, 0, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // D3.js Leaderboard Graph
+            var dataD3 = [
+                { player: 'Player A', score: 1200 },
+                { player: 'Player B', score: 1350 },
+                { player: 'Player C', score: 1280 }
+            ];
+
+            var margin = { top: 10, right: 30, bottom: 30, left: 60 };
+            var width = 600 - margin.left - margin.right;
+            var height = 400 - margin.top - margin.bottom;
+
+            var svg = d3.select('#leaderboardGraphD3')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+            var x = d3.scaleBand()
+                .domain(dataD3.map(d => d.player))
+                .range([0, width])
+                .padding(0.1);
+
+            var y = d3.scaleLinear()
+                .domain([0, d3.max(dataD3, d => d.score)])
+                .range([height, 0]);
+
+            var color = d3.scaleOrdinal()
+                .domain(['Player A', 'Player B', 'Player C'])
+                .range(['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 255, 0, 1)']);
+
+            var xAxis = d3.axisBottom(x);
+            var yAxis = d3.axisLeft(y);
+
+            svg.append('g')
+                .attr('transform', 'translate(0,' + height + ')')
+                .call(xAxis);
+
+            svg.append('g')
+                .call(yAxis);
+
+            svg.selectAll()
+                .data(dataD3)
+                .enter().append('rect')
+                .attr('x', d => x(d.player))
+                .attr('y', d => y(d.score))
+                .attr('width', x.bandwidth())
+                .attr('height', d => height - y(d.score))
+                .attr('fill', d => color(d.player))
+                .on('mouseover', function (event, d) {
+                    d3.select(this).attr('fill', d3.rgb(color(d.player)).darker());
+                })
+                .on('mouseout', function (event, d) {
+                    d3.select(this).attr('fill', color(d.player));
+                });
+        });
+    </script>
+</body>
+
+</html>

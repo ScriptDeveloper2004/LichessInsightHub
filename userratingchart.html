@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess User Account Rating Statistics</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        .img-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Lichess User Account Rating Statistics</h1>
+        <p>Exploring the Rating Insights on Lichess</p>
+    </header>
+
+    <section>
+        <h2>How Lichess User Account Rating Statistics Work</h2>
+        <p>
+            The Lichess User Account Rating Statistics provide detailed insights into a player's performance, showcasing the rating trends over time. This dynamic system aids players in understanding their strengths, weaknesses, and overall progress in chess.
+        </p>
+        <p>
+            The statistics include a comprehensive overview of the rating range, allowing players to track their development within specific skill brackets.
+        </p>
+    </section>
+
+    <section>
+        <h2>Rights of Lichess User Account Rating Statistics</h2>
+        <p>
+            Users have the right to access and analyze their personal rating statistics. This includes viewing historical data, exploring rating variations, and setting personalized rating goals. Lichess ensures transparency, empowering players to make informed decisions about their chess journey.
+        </p>
+        <p>
+            The system promotes self-awareness and strategic improvement, contributing to a fulfilling chess experience on the Lichess platform.
+        </p>
+    </section>
+
+    <section>
+        <h2>Modern Working Graphs</h2>
+        <div class="graph-container">
+            <!-- Chart.js Area Graph -->
+            <canvas id="ratingStatsGraphChartJS"></canvas>
+        </div>
+        <div class="graph-container">
+            <!-- D3.js Area Graph -->
+            <svg id="ratingStatsGraphD3"></svg>
+        </div>
+    </section>
+
+    <section>
+        <h2>Rating Range: 2500 to 3000</h2>
+        <div class="img-container">
+            <!-- Placeholder for Imgur image -->
+            <img src="https://via.placeholder.com/800x400" alt="Rating Range Image">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Insight Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        // JavaScript code for the modern working graphs using Chart.js and D3.js
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chart.js Area Graph
+            var ctxChartJS = document.getElementById('ratingStatsGraphChartJS').getContext('2d');
+            var myChartChartJS = new Chart(ctxChartJS, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                    datasets: [{
+                        label: 'Rating Trend',
+                        data: [2550, 2600, 2520, 2700, 2680, 2750, 2800, 2850, 2900, 2950, 3000], // Replace with actual data
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom'
+                        },
+                        y: {
+                            beginAtZero: false,
+                            max: 3000
+                        }
+                    }
+                }
+            });
+
+            // D3.js Area Graph
+            var dataD3 = [
+                { month: 'Jan', rating: 2550 },
+                { month: 'Feb', rating: 2600 },
+                { month: 'Mar', rating: 2520 },
+                { month: 'Apr', rating: 2700 },
+                { month: 'May', rating: 2680 }
+            ];
+
+            var margin = { top: 10, right: 30, bottom: 30, left: 60 };
+            var width = 600 - margin.left - margin.right;
+            var height = 400 - margin.top - margin.bottom;
+
+            var svg = d3.select('#ratingStatsGraphD3')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+            var x = d3.scaleBand()
+                .domain(dataD3.map(d => d.month))
+                .range([0, width])
+                .padding(0.1);
+
+            var y = d3.scaleLinear()
+                .domain([d3.min(dataD3, d => d.rating), d3.max(dataD3, d => d.rating)])
+                .range([height, 0]);
+
+            var area = d3.area()
+                .x(d => x(d.month))
+                .y0(height)
+                .y1(d => y(d.rating));
+
+            svg.append('path')
+                .datum(dataD3)
+                .attr('fill', 'rgba(75, 192, 192, 0.2)')
+                .attr('stroke', 'rgba(75, 192, 192, 1)')
+                .attr('stroke-width', 2)
+                .attr('d', area);
+
+            var xAxis = d3.axisBottom(x);
+            var yAxis = d3.axisLeft(y);
+
+            svg.append('g')
+                .attr('transform', 'translate(0,' + height + ')')
+                .call(xAxis);
+
+            svg.append('g')
+                .call(yAxis);
+        });
+    </script>
+</body>
+
+</html>

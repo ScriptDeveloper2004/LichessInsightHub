@@ -79,26 +79,26 @@
 <body>
     <header>
         <h1>Lichess User Account Rating Statistics</h1>
-        <p>Exploring User Account Personal Rating Statistics on Lichess</p>
+        <p>Understanding Your Rating on Lichess</p>
     </header>
 
     <section>
-        <h2>How User Account Rating Statistics Work on Lichess</h2>
+        <h2>How Lichess User Account Rating Statistics Work</h2>
         <p>
-            The User Account Rating Statistics on Lichess provide detailed insights into a player's performance. It includes data on rating trends, best-performing time controls, and achievements within a specified rating range.
+            The Lichess User Account Rating Statistics provide a comprehensive overview of your chess performance. It includes data on your rating changes, game outcomes, and performance trends over time.
         </p>
         <p>
-            This feature allows players to track their progress, identify strengths and weaknesses, and set goals for improvement.
+            Users can analyze their statistics to identify strengths, weaknesses, and track their progress. It serves as a valuable tool for self-improvement and strategic gameplay.
         </p>
     </section>
 
     <section>
-        <h2>Rights of User Account Rating Statistics on Lichess</h2>
+        <h2>Rights of Lichess User Account Rating Statistics</h2>
         <p>
-            Users have the right to access and analyze their personal rating statistics. Lichess ensures transparency by providing accurate and up-to-date information, empowering players to make informed decisions about their chess journey.
+            Lichess users have the right to access and analyze their personal rating statistics. It empowers players to make informed decisions about their gameplay, set goals, and measure their improvement over different time periods.
         </p>
         <p>
-            The user-friendly interface makes it easy for players to interpret and leverage their rating statistics for strategic gameplay.
+            The rating statistics system aligns with Lichess's commitment to transparency and user-driven improvements, contributing to a positive and competitive online chess community.
         </p>
     </section>
 
@@ -106,11 +106,19 @@
         <h2>Modern Working Graphs</h2>
         <div class="graph-container">
             <!-- Chart.js Rating Statistics Graph -->
-            <canvas id="ratingStatsGraphChartJS"></canvas>
+            <canvas id="ratingStatisticsGraphChartJS"></canvas>
         </div>
         <div class="graph-container">
             <!-- D3.js Rating Statistics Graph -->
-            <svg id="ratingStatsGraphD3"></svg>
+            <svg id="ratingStatisticsGraphD3"></svg>
+        </div>
+    </section>
+
+    <section>
+        <h2>Ratings Range: 2500 to 3000</h2>
+        <div class="graph-container">
+            <!-- Placeholder for Image -->
+            <p>Placeholder for Image</p>
         </div>
     </section>
 
@@ -128,38 +136,36 @@
         // JavaScript code for the modern working graphs using Chart.js and D3.js
         document.addEventListener('DOMContentLoaded', function () {
             // Chart.js Rating Statistics Graph
-            var ctxChartJS = document.getElementById('ratingStatsGraphChartJS').getContext('2d');
+            var ctxChartJS = document.getElementById('ratingStatisticsGraphChartJS').getContext('2d');
             var myChartChartJS = new Chart(ctxChartJS, {
                 type: 'bar',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                    labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5'],
                     datasets: [{
-                        label: 'Blitz',
-                        data: [2600, 2620, 2580, 2650, 2700],
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
+                        label: 'Rating Statistics (Chart.js)',
+                        data: [2550, 2575, 2600, 2625, 2650], // Replace with actual data
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 255, 0, 0.2)',
+                            'rgba(0, 123, 255, 0.2)',
+                            'rgba(255, 0, 0, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 255, 0, 1)',
+                            'rgba(0, 123, 255, 1)',
+                            'rgba(255, 0, 0, 1)'
+                        ],
                         borderWidth: 1
                     }]
                 },
                 options: {
                     scales: {
-                        x: {
-                            type: 'linear',
-                            position: 'bottom'
-                        },
                         y: {
                             beginAtZero: true,
-                            max: 3000
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top'
-                        },
-                        tooltip: {
-                            mode: 'index',
-                            intersect: false
+                            max: 3000 // Set maximum rating range
                         }
                     }
                 }
@@ -167,18 +173,18 @@
 
             // D3.js Rating Statistics Graph
             var dataD3 = [
-                { month: 'Jan', blitz: 2600, rapid: 2550, classical: 2650 },
-                { month: 'Feb', blitz: 2620, rapid: 2580, classical: 2700 },
-                { month: 'Mar', blitz: 2580, rapid: 2600, classical: 2680 },
-                { month: 'Apr', blitz: 2650, rapid: 2630, classical: 2720 },
-                { month: 'May', blitz: 2700, rapid: 2650, classical: 2750 }
+                { month: 'Month 1', rating: 2550 },
+                { month: 'Month 2', rating: 2575 },
+                { month: 'Month 3', rating: 2600 },
+                { month: 'Month 4', rating: 2625 },
+                { month: 'Month 5', rating: 2650 }
             ];
 
             var margin = { top: 10, right: 30, bottom: 30, left: 60 };
             var width = 600 - margin.left - margin.right;
             var height = 400 - margin.top - margin.bottom;
 
-            var svg = d3.select('#ratingStatsGraphD3')
+            var svg = d3.select('#ratingStatisticsGraphD3')
                 .attr('width', width + margin.left + margin.right)
                 .attr('height', height + margin.top + margin.bottom)
                 .append('g')
@@ -190,12 +196,12 @@
                 .padding(0.1);
 
             var y = d3.scaleLinear()
-                .domain([d3.min(dataD3, d => d.blitz), d3.max(dataD3, d => d.classical)])
+                .domain([d3.min(dataD3, d => d.rating), d3.max(dataD3, d => d.rating)])
                 .range([height, 0]);
 
             var color = d3.scaleOrdinal()
-                .domain(['blitz', 'rapid', 'classical'])
-                .range(['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 255, 0, 1)']);
+                .domain(dataD3.map(d => d.month))
+                .range(['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 255, 0, 1)', 'rgba(0, 123, 255, 1)', 'rgba(255, 0, 0, 1)']);
 
             var xAxis = d3.axisBottom(x);
             var yAxis = d3.axisLeft(y);
@@ -211,15 +217,15 @@
                 .data(dataD3)
                 .enter().append('rect')
                 .attr('x', d => x(d.month))
-                .attr('y', d => y(d.blitz))
+                .attr('y', d => y(d.rating))
                 .attr('width', x.bandwidth())
-                .attr('height', d => height - y(d.blitz))
-                .attr('fill', color('blitz'))
+                .attr('height', d => height - y(d.rating))
+                .attr('fill', d => color(d.month))
                 .on('mouseover', function (event, d) {
-                    d3.select(this).attr('fill', d3.rgb(color('blitz')).darker());
+                    d3.select(this).attr('fill', d3.rgb(color(d.month)).darker());
                 })
                 .on('mouseout', function (event, d) {
-                    d3.select(this).attr('fill', color('blitz'));
+                    d3.select(this).attr('fill', color(d.month));
                 });
         });
     </script>
